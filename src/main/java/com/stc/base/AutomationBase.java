@@ -14,65 +14,60 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class AutomationBase {
 
-	public WebDriver driver;
+    public WebDriver driver;
 
-	/**
-	 * Method to start Browser session Chrome/Firefox/Edge
-	 * 
-	 * @author Anish
-	 * @since 03/October/2023
-	 * @param browserName
-	 * @return
-	 * @throws IOException
-	 */
-	public WebDriver startBrowserSession(String browserName) throws IOException {
+    /**
+     * Method to start Browser session Chrome/Firefox/Edge
+     * 
+     * @author Anish
+     * @since 03/October/2023
+     * @param browserName
+     * @return
+     * @throws IOException
+     */
+    public WebDriver startBrowserSession(String browserName) throws IOException {
 
-		if (browserName.equalsIgnoreCase("chrome") || browserName.equalsIgnoreCase("Chrome_headless")) {
+        System.out.println("Launching browser: " + browserName);
 
-			ChromeOptions options = new ChromeOptions();
+        if (browserName.equalsIgnoreCase("chrome") || browserName.equalsIgnoreCase("Chrome_headless")) {
+            ChromeOptions options = new ChromeOptions();
+            if (browserName.equalsIgnoreCase("Chrome_headless")) {
+                options.addArguments("--headless");
+            }
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver(options);
 
-			if (browserName.equalsIgnoreCase("Chrome_headless")) {
-				options.addArguments("--headless");
-			}
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver(options);
+        } else if (browserName.equalsIgnoreCase("firefox") || browserName.equalsIgnoreCase("Firefox_headless")) {
+            FirefoxOptions options = new FirefoxOptions();
+            if (browserName.equalsIgnoreCase("Firefox_headless")) {
+                options.addArguments("--headless");
+            }
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver(options);
 
-		} else if (browserName.equalsIgnoreCase("firefox") || browserName.equalsIgnoreCase("Firefox_headless")) {
+        } else if (browserName.equalsIgnoreCase("edge") || browserName.equalsIgnoreCase("Edge_headless")) {
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage", "--guest");
+            if (browserName.equalsIgnoreCase("Edge_headless")) {
+                options.addArguments("--headless");
+            }
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver(options);
 
-			FirefoxOptions options = new FirefoxOptions();
+        } else {
+            System.out.println("Unsupported browser: " + browserName);
+        }
 
-			if (browserName.equalsIgnoreCase("Firefox_headless")) {
-				options.addArguments("--headless");
-			}
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver(options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        return driver;
+    }
 
-		} else if (browserName.equalsIgnoreCase("edge") || browserName.equalsIgnoreCase("Edge_headless")) {
-
-			EdgeOptions options = new EdgeOptions();
-			options.addArguments("--guest");
-			//options.addArguments("--incognito");
-			
-			if (browserName.equalsIgnoreCase("Edge_headless")) {
-				options.addArguments("--headless");
-			}
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver(options);
-
-		} else {
-			System.out.println("Unsupport browser: " + browserName);
-		}
-
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		return driver;
-
-	}
-
-	@AfterClass
-	public void tearDown() throws InterruptedException {
-		Thread.sleep(2000);
-		driver.quit();
-	}
-
+    @AfterClass
+    public void tearDown() throws InterruptedException {
+        if (driver != null) {
+            Thread.sleep(2000);
+            driver.quit();
+        }
+    }
 }
