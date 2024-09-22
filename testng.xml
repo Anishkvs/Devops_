@@ -11,8 +11,8 @@
 		<classes>
 
 			<class name="com.stc.test.STCKw" />
-		<!--		<class name="com.stc.test.HomeMenu" />
-				 -->
+				<class name="com.stc.test.HomeMenu" />
+			
 
 		</classes>
 	</test>
