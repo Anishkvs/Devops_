@@ -7,12 +7,8 @@ import com.stc.pages.HeaderManuPage;
 import com.stc.runner.TestRunner;
 
 public class HomeMenu extends TestRunner{
-//Parameter 'browserName' is required by 
-//	BeforeClass on method setUp but has not been marked 
-//	@Optional or defined
+
 	@Test(priority=1)
-	 @BeforeClass
-	  @Parameters({"browserName"})
 	public void AllDeviceMenu() throws InterruptedException {
 		HeaderManuPage menu = new HeaderManuPage(driver);
 		Thread.sleep(2000);
