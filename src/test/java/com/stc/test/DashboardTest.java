@@ -3,8 +3,10 @@ package com.stc.test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 
+import com.beust.jcommander.Parameters;
 import com.stc.keywords.Keywords;
 import com.stc.pages.HomePage;
 import com.stc.pages.LoginPage;
@@ -16,7 +18,14 @@ import io.qameta.allure.Description;
 
 public class DashboardTest extends TestRunner{
 
-	@Test(priority=1)
+//	@BeforeClass
+//    @Parameters({"browserName"})
+//    public void setUp(@Optional("chrome") String browserName) {
+//        // Initialize the driver and other setup tasks
+//        driver = initializeDriver(browserName); // Example method to initialize WebDriver with the browserName
+//    }
+
+///	@Test(priority=1)
 	@Description("Users should be able to pay outstanding, billed, or custom amounts.")
 	public void SC_01_PayAdvanceScenario() throws InterruptedException, IOException {
 		HomePage home = new HomePage(driver);

@@ -10,7 +10,9 @@
 		<parameter name="browserName" value="edge" />
 		<classes>
 
-			<class name="com.stc.test.DashboardTest" />
+						<class name="com.stc.test.HomeMenu" />
+
+	<!--		<class name="com.stc.test.DashboardTest" />
 			<class name="com.stc.test.PayTest" />
 			<class name="com.stc.test.PayTwoTest" />
 			<class name="com.stc.test.User_GetNewLineTest" />
@@ -25,7 +27,7 @@
 			<class name="com.stc.test.GetNewLine_Guest3" />
 			<class name="com.stc.test.GetNewLine_Guest4" />
 
-			<!--  			<class name="com.stc.test.HomeMenu" />
+						<class name="com.stc.test.HomeMenu" />
 -->
 		</classes>
 	</test>
