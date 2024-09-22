@@ -14,8 +14,9 @@
 
 	<!--		
 			<class name="com.stc.test.guestTest" />
-			
+		-->	
 		</classes>
 	</test>
+
 
 </suite> 

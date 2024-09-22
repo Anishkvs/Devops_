@@ -34,7 +34,8 @@ public class AutomationBase {
 			if (browserName.equalsIgnoreCase("Chrome_headless")) {
 				options.addArguments("--headless");
 			}
-			WebDriverManager.chromedriver().setup();
+		//	WebDriverManager.chromedriver().setup();
+			WebDriverManager.chromedriver().browserVersion("128.0.6613.138").setup();
 			driver = new ChromeDriver(options);
 
 		} else if (browserName.equalsIgnoreCase("firefox") || browserName.equalsIgnoreCase("Firefox_headless")) {
