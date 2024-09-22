@@ -27,47 +27,45 @@ public class AutomationBase {
 	 */
 	public WebDriver startBrowserSession(String browserName) throws IOException {
 
-		if (browserName.equalsIgnoreCase("chrome") || browserName.equalsIgnoreCase("Chrome_headless")) {
+	    if (browserName.equalsIgnoreCase("edge") || browserName.equalsIgnoreCase("Edge_headless")) {
 
-			ChromeOptions options = new ChromeOptions();
+	        EdgeOptions options = new EdgeOptions();
+	        options.addArguments("--guest");
+	        //options.addArguments("--incognito");
 
-			if (browserName.equalsIgnoreCase("Chrome_headless")) {
-				options.addArguments("--headless");
-			}
-		//	WebDriverManager.chromedriver().setup();
-			WebDriverManager.chromedriver().browserVersion("128.0.6613.138").setup();
-			driver = new ChromeDriver(options);
+	        if (browserName.equalsIgnoreCase("Edge_headless")) {
+	            options.addArguments("--headless");
+	        }
+	        WebDriverManager.edgedriver().setup();
+	        driver = new EdgeDriver(options);
 
-		} else if (browserName.equalsIgnoreCase("firefox") || browserName.equalsIgnoreCase("Firefox_headless")) {
+	    } else if (browserName.equalsIgnoreCase("firefox") || browserName.equalsIgnoreCase("Firefox_headless")) {
 
-			FirefoxOptions options = new FirefoxOptions();
+	        FirefoxOptions options = new FirefoxOptions();
 
-			if (browserName.equalsIgnoreCase("Firefox_headless")) {
-				options.addArguments("--headless");
-			}
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver(options);
+	        if (browserName.equalsIgnoreCase("Firefox_headless")) {
+	            options.addArguments("--headless");
+	        }
+	        WebDriverManager.firefoxdriver().setup();
+	        driver = new FirefoxDriver(options);
 
-		} else if (browserName.equalsIgnoreCase("edge") || browserName.equalsIgnoreCase("Edge_headless")) {
+	    } else if (browserName.equalsIgnoreCase("chrome") || browserName.equalsIgnoreCase("Chrome_headless")) {
 
-			EdgeOptions options = new EdgeOptions();
-			options.addArguments("--guest");
-			//options.addArguments("--incognito");
-			
-			if (browserName.equalsIgnoreCase("Edge_headless")) {
-				options.addArguments("--headless");
-			}
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver(options);
+	        ChromeOptions options = new ChromeOptions();
 
-		} else {
-			System.out.println("Unsupport browser: " + browserName);
-		}
+	        if (browserName.equalsIgnoreCase("Chrome_headless")) {
+	            options.addArguments("--headless");
+	        }
+	        WebDriverManager.chromedriver().browserVersion("128.0.6613.138").setup();
+	        driver = new ChromeDriver(options);
 
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		return driver;
+	    } else {
+	        System.out.println("Unsupported browser: " + browserName);
+	    }
 
+	    driver.manage().window().maximize();
+	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	    return driver;
 	}
 
 	@AfterClass
