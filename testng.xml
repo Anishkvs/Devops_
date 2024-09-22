@@ -12,9 +12,6 @@
 
 						<class name="com.stc.test.HomeMenu" />
 
-	<!--		
-			<class name="com.stc.test.guestTest" />
-		-->	
 		</classes>
 	</test>
 
