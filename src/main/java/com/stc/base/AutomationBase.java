@@ -49,16 +49,6 @@ public class AutomationBase {
 	        WebDriverManager.firefoxdriver().setup();
 	        driver = new FirefoxDriver(options);
 
-	    } else if (browserName.equalsIgnoreCase("chrome") || browserName.equalsIgnoreCase("Chrome_headless")) {
-
-	        ChromeOptions options = new ChromeOptions();
-
-	        if (browserName.equalsIgnoreCase("Chrome_headless")) {
-	            options.addArguments("--headless");
-	        }
-	        WebDriverManager.chromedriver().browserVersion("128.0.6613.138").setup();
-	        driver = new ChromeDriver(options);
-
 	    } else {
 	        System.out.println("Unsupported browser: " + browserName);
 	    }
