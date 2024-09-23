@@ -12,6 +12,7 @@
 
 			<class name="com.stc.test.STCKw" />
 			<class name="com.stc.test.HomeMenu" /> 
+		
 			
 
 		</classes>
