@@ -11,8 +11,6 @@
 		<classes>
 
 			<class name="com.stc.test.STCKw" />
-		
-			
 
 		</classes>
 	</test>
